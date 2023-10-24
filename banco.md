@@ -1,6 +1,6 @@
 # Orgazinação das tabelas do banco de dados
 
-## Tabela Login
+## Tabela Cliente
 >Campos:
 >* ID (INT PRIMARY KEY AI)
 >* Nome (VARCHAR(70) NOT NULL)
@@ -17,7 +17,7 @@
 >* Quantidade (INT NOT NULL)
 >* Preço
 
-## Fornecedor ou Cliente
+## Fornecedor
 >Campos:
 >* ID_fornecedor (INT PRIMARY KEY AI)
 >* nome_fornecedor
