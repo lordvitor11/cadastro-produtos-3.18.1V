@@ -33,3 +33,10 @@
 >* Quantidade
 >* id_produto
 >* id_usuario
+>
+
+# Relacionamento entre tabelas
+
+A tabela "Transação" tem uma chave estrangeira produto_id e id_usuario que se relaciona com a chave primária produto_id na tabela "Produto" e se relaciona com a chave primaria ID na tabela "Login" em suas respectivas ordens. Isso vincula cada transação a um produto específico.
+
+Por exemplo, se você deseja rastrear informações sobre qual fornecedor forneceu um determinado produto, você pode adicionar uma chave estrangeira fornecedor_id na tabela "Produto" para se relacionar com a tabela "Fornecedor".
