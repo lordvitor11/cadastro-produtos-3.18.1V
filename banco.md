@@ -15,6 +15,7 @@
 >* Produto ()
 >* Tipo ()
 >* Quantidade (INT NOT NULL)
+>* Preço
 
 ## Tabela 3
 
