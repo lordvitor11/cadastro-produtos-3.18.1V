@@ -20,3 +20,7 @@
 ## Tabela 3
 
 ## Tabela Transação
+>Campos:
+>* ID (INT PRIMARY KEY AI)
+>* Hora (timestamp)
+>* Usuario
