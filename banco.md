@@ -24,3 +24,4 @@
 >* ID (INT PRIMARY KEY AI)
 >* Hora (timestamp)
 >* Usuario
+>* Forma de pagamento
