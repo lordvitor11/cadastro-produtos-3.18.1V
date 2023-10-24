@@ -8,7 +8,7 @@
 >* CPF (VARCHAR(11) NOT NULL UNIQUE) (opcional)
 >* Senha (MD5(60) NOT NULL)
 
-## Tabela Estoque
+## Tabela Produto
 >Campos:
 >* ID (INT PRIMARY KEY AI)
 >* Nome (VARCHAR(70) NOT NULL)
@@ -17,11 +17,19 @@
 >* Quantidade (INT NOT NULL)
 >* Preço
 
-## Tabela 3
+## Fornecedor
+>Campos:
+>* ID_fornecedor (INT PRIMARY KEY AI)
+>* nome_fornecedor
+>* cnpj_fornecedor
+>* fone_fornecedor
 
 ## Tabela Transação
 >Campos:
 >* ID (INT PRIMARY KEY AI)
 >* Hora (timestamp)
->* Usuario
 >* Forma de pagamento
+>* Tipo da movimentação
+>* Quantidade
+>* id_produto
+>* id_usuario
