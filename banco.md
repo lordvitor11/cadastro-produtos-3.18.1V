@@ -17,7 +17,7 @@
 >* Quantidade (INT NOT NULL)
 >* Preço
 
-## Fornecedor
+## Fornecedor ou Cliente
 >Campos:
 >* ID_fornecedor (INT PRIMARY KEY AI)
 >* nome_fornecedor
