@@ -17,12 +17,21 @@
 >* Quantidade (INT NOT NULL)
 >* Preço
 
-## Fornecedor
->Campos:
->* ID_fornecedor (INT PRIMARY KEY AI)
->* nome_fornecedor
->* cnpj_fornecedor
->* fone_fornecedor
+## Tabela Carrinho de Compras
+### Cliente
+    ID do Cliente (Primary Key)
+    Nome
+    Email
+    *dados pegos da propria tabela cliente*
+
+### Produto
+
+    ID do Produto (Primary Key)
+    Nome do Produto
+    Descrição
+    Preço
+    *dados pegos da propria tabela produto*
+
 
 ## Tabela Transação
 >Campos:
@@ -33,7 +42,20 @@
 >* Quantidade
 >* id_produto
 >* id_usuario
->
+
+Detalhes da Compra
+
+    ID da Compra (Primary Key)
+    ID do Cliente (chave estrangeira referenciando a tabela Cliente)
+    Data da Compra
+    Status da Compra (pendente, concluída, cancelada, etc.)
+
+    ID do Detalhe da Compra (Primary Key)
+    ID da Compra (chave estrangeira referenciando a tabela Compra)
+    ID do Produto (chave estrangeira referenciando a tabela Produto)
+    Quantidade do Produto
+    Preço Unitário na hora da compra
+    Total (calculado multiplicando a quantidade pelo preço unitário)
 
 # Relacionamento entre tabelas
 
