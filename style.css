@@ -1,3 +1,13 @@
+/* 
+PALETA DE CORES
+
+Azul Principal: #3498db (usado na barra de navegação e elementos de destaque)
+Azul Mais Escuro: #2980b9 (variação mais escura para realces ou sobreposições)
+Branco: #FFFFFF (usado como cor de fundo para a maioria dos contêineres)
+Cinza Claro: #f2f2f2 (usado como cor de fundo do corpo da página)
+Cinza Suave para bordas: #ccc (para bordas de elementos) 
+*/
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -8,6 +18,9 @@ body {
 .navbar {
     background-color: #3498db;
     overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 5px;
 }
   
 .navbar ul {
@@ -21,6 +34,7 @@ body {
 }
   
 .navbar li a {
+    transition: all 0.35s ease;
     display: block;
     color: white;
     text-align: center;
