@@ -36,5 +36,11 @@
             ?>
         </ul>
     </div>
+
+    <div class="main">
+        <h1>Projeto Carrinho de Compras</h1>
+
+        <p>Este é um site desenvolvido para filiar e aplicar os conhecimentos adquiridos nas matérias de <strong>Lingugagem de Programação II</strong> e <strong>Banco de Dados</strong>.</p>
+    </div>
 </body>
 </html> 

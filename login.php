@@ -30,11 +30,23 @@
 
     <div class="container" id="login">
         <h2>Login</h2>
-        <form>
-            <input type="text" placeholder="Usuário" autocomplete="off" required>
-            <input type="password" placeholder="Senha" autocomplete="off" required>
-            <button type="submit">Entrar</button>
+        <form action="" method="post">
+            <input type="text" placeholder="Usuário" autocomplete="off" name="user" required>
+            <input type="password" placeholder="Senha" autocomplete="off" name="password" required>
+            <button type="submit" name="sendbtn">Entrar</button>
         </form>
     </div>
+    <?php 
+        if (isset($_POST["sendbtn"])) {
+            $tempname = $_POST['user'];
+            $temppass = $_POST['password'];
+            
+            if ($tempname == "LV" && $temppass == "123") {
+                header("Location: insert.php?user=LV");
+            } else {
+                echo "Credenciais inválidas!";
+            }
+        }  
+    ?>
 </body>
 </html>
