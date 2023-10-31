@@ -1,12 +1,68 @@
 /* 
 PALETA DE CORES
-
 Azul Principal: #3498db (usado na barra de navegação e elementos de destaque)
 Azul Mais Escuro: #2980b9 (variação mais escura para realces ou sobreposições)
 Branco: #FFFFFF (usado como cor de fundo para a maioria dos contêineres)
 Cinza Claro: #f2f2f2 (usado como cor de fundo do corpo da página)
 Cinza Suave para bordas: #ccc (para bordas de elementos) 
+
 */
+
+:root {
+    --blue-main: #3498db;
+    --blue-darker: #2980b9;
+    --white: #FFFFFF;
+    --light-gray: #f2f2f2;
+    --border-gray: #ccc;
+}
+
+.popup {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    max-width: 400px;
+    margin: 20% auto;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    color: var(--blue-darker);
+    font-size: 24px;
+}
+
+.close:hover {
+    color: var(--blue-main);
+}
+
+#openPopup {
+    background-color: var(--blue-main);
+    color: var(--white);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#openPopup:hover {
+    background-color: var(--blue-darker);
+}
 
 body {
     font-family: Arial, sans-serif;
