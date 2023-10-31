@@ -24,8 +24,8 @@
         </ul>
         
         <ul>
-            <li><a href="login.php">Login</a></li>
             <li><a href="signup.php">Cadastro</a></li>
+            <li><a href="login.php">Login</a></li>
         </ul>
     </div>
 
@@ -43,9 +43,9 @@
 
             $tempemail = $_POST['email'];
             $temppass = $_POST['password'];
-            $status = 1;
+            // $status = 1;
             
-            $sql = "SELECT * FROM usuario WHERE email = '$tempemail'";
+            $sql = "SELECT * FROM cliente WHERE email = '$tempemail'";
 
             $result = $conn -> query($sql);
 
@@ -62,14 +62,17 @@
                     $conn -> close();
 
                     $status = 0;
-                    header("Location: index.php");
+                    // header("Location: index.php");
                 } else {
                     $status = 1;
-                    echo "Usuário não encontrado!";
+                    // echo "Usuário não encontrado!";
                 }
 
-                echo "<script>popup($status);</script>";
+            } else {
+                $status = 2;
             }
+
+            echo "<script>popup($status);</script>";
         }  
     ?>
 </body>

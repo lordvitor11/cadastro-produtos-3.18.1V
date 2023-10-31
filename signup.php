@@ -14,6 +14,7 @@
   <meta charset="UTF-8">
   <title>Cadastre-se</title>
   <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
 </head>
 <body>
     <div class="navbar">
@@ -24,15 +25,16 @@
         </ul>
         
         <ul>
-            <li><a href="login.php">Login</a></li>
             <li><a href="signup.php">Cadastro</a></li>
+            <li><a href="login.php">Login</a></li>
         </ul>
     </div>
 
     <div class="container" id="cadastro">
         <h2>Cadastro</h2>
         <form action="" method="post">
-            <input type="text" placeholder="Nome" name="user" autocomplete="off" required>
+            <input type="text" placeholder="Nome" name="user" autocomplete="off" autocapitalize="on" required>
+            <input type="text" placeholder="CPF" name="cpf" autocomplete="off" required>
             <input type="email" placeholder="E-mail" name="email" autocomplete="off" required>
             <input type="password" placeholder="Senha" name="pass" autocomplete="off" required>
             <button type="submit" name="sendbtn">Cadastrar</button>
@@ -45,32 +47,34 @@
             $user = $_POST['user'];
             $email = $_POST['email'];
             $pass = $_POST['pass'];
-            $cpf = '000';
+            $cpf = $_POST['cpf'];
 
-            $sql = "SELECT cpf FROM usuario WHERE cpf = '$cpf'";
+            $sql = "SELECT cpf FROM cliente WHERE cpf = '$cpf'";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
-                echo "O CPF $cpf já existe na tabela.";
+                $status = 4;
             } else {
-                $sql = "SELECT email FROM usuario WHERE email = '$email'";
+                $sql = "SELECT email FROM cliente WHERE email = '$email'";
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
-                    echo "O email $email já existe na tabela.";
+                    $status = 5;
                 } else {
-                    $sql = "INSERT INTO usuario(cpf, email, nome, senha) VALUES ('$cpf', '$email', '$user', MD5('$pass'))";
+                    $sql = "INSERT INTO cliente(cpf, email, nome, senha) VALUES ('$cpf', '$email', '$user', MD5('$pass'))";
 
                     if ($conn -> query($sql) === TRUE) {
                         $_SESSION['username'] = $user;
                         $_SESSION['logged_in'] = true;
                         $conn -> close();
-                        header("Location: index.php");
+                        $status = 3;
                     } else {
                         die($conn->error);
                     }
                 }
             }
+
+            echo "<script>popup($status);</script>";
         }
     ?>
 </body>

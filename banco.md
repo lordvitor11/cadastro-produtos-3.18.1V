@@ -12,8 +12,8 @@
 >Campos:
 >* ID (INT PRIMARY KEY AI)
 >* Nome (VARCHAR(70) NOT NULL)
->* Descricão (VARCHAR(45) NOT NULL)
->* Categoria (VARCHAR(45) NOT NULL)
+>* Produto ()
+>* Tipo ()
 >* Quantidade (INT NOT NULL)
 >* Preço
 

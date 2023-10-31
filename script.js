@@ -18,7 +18,19 @@ function popup(status) {
         p.innerHTML = "Logado(a) com sucesso!";
     } else if (status == 1) {
         h2.innerHTML = "Erro";
+        p.innerHTML = "Credenciais inválidas!";
+    } else if (status == 2) {
+        h2.innerHTML = "Erro";
         p.innerHTML = "Usuário não encontrado!";
+    } else if (status == 3) {
+        h2.innerHTML = "Sucesso";
+        p.innerHTML = "Cadastrado(a) com sucesso!";
+    } else if (status == 4) {
+        h2.innerHTML = "Erro";
+        p.innerHTML = "CPF já cadastrado!";
+    } else if (status == 5) {
+        h2.innerHTML = "Erro";
+        p.innerHTML = "E-mail já cadastrado!";
     }
 
     divpopup.appendChild(divpopupcontent);
@@ -32,7 +44,10 @@ function popup(status) {
     document.getElementById('closePopup').addEventListener('click', function() {
         if (status == 0) {
             window.location.href = "index.php";
+        } else if (status == 3) {
+            window.location.href = "index.php";
         }
+        
         divpopup.parentNode.removeChild(divpopup);
     });
 }

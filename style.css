@@ -16,6 +16,104 @@ Cinza Suave para bordas: #ccc (para bordas de elementos)
     --border-gray: #ccc;
 }
 
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-gray);
+}
+  
+.navbar {
+    background-color: var(--blue-main);
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 5px;
+}
+  
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar li {
+    float: left;
+}
+  
+.navbar li a {
+    transition: all 0.35s ease;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+  
+.navbar li a:hover {
+    background-color: var(--blue-darker);
+}
+  
+.container {
+    width: 300px;
+    margin: 50px auto;
+    background: var(--white);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+  
+.container h2 {
+    text-align: center;
+    color: var(--blue-main);
+}
+  
+.container form {
+    display: flex;
+    flex-direction: column;
+}
+  
+.container input[type="text"],
+.container input[type="password"],
+.container input[type="email"],
+.container button {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid var(--border-gray);
+    border-radius: 3px;
+}
+  
+.container button {
+    background-color: var(--blue-main);
+    color: var(--white);
+    border: none;
+    cursor: pointer;
+}
+  
+.container button:hover {
+    background-color: var(--blue-darker);
+}
+  
+.main {
+    width: 100%;
+    height: 100%;
+}
+
+.main h1 {
+    text-align: center;
+    font-size: 2.5em;
+}
+
+.main strong {
+    color: var(--blue-darker);
+}
+
+.main p {
+    font-size: 1.35em;
+    text-align: center;
+}
+
+
 .popup {
     display: block;
     position: absolute;
@@ -29,6 +127,8 @@ Cinza Suave para bordas: #ccc (para bordas de elementos)
 }
 
 .popup-content {
+    text-align: center;
+    align-items: center;
     background: var(--white);
     padding: 20px;
     border-radius: 5px;
@@ -62,101 +162,4 @@ Cinza Suave para bordas: #ccc (para bordas de elementos)
 
 #openPopup:hover {
     background-color: var(--blue-darker);
-}
-
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f2f2f2;
-}
-  
-.navbar {
-    background-color: #3498db;
-    overflow: hidden;
-    display: flex;
-    justify-content: space-between;
-    padding: 0px 5px;
-}
-  
-.navbar ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-.navbar li {
-    float: left;
-}
-  
-.navbar li a {
-    transition: all 0.35s ease;
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-  
-.navbar li a:hover {
-    background-color: #2980b9;
-}
-  
-.container {
-    width: 300px;
-    margin: 50px auto;
-    background: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-}
-  
-.container h2 {
-    text-align: center;
-    color: #3498db;
-}
-  
-.container form {
-    display: flex;
-    flex-direction: column;
-}
-  
-.container input[type="text"],
-.container input[type="password"],
-.container input[type="email"],
-.container button {
-    margin: 10px 0;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-}
-  
-.container button {
-    background-color: #3498db;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-  
-.container button:hover {
-    background-color: #2980b9;
-}
-  
-.main {
-    width: 100%;
-    height: 100%;
-}
-
-.main h1 {
-    text-align: center;
-    font-size: 2.5em;
-}
-
-.main strong {
-    color: #2980b9;
-}
-
-.main p {
-    font-size: 1.35em;
-    text-align: center;
 }
