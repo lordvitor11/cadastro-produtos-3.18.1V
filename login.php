@@ -14,6 +14,7 @@
   <meta charset="UTF-8">
   <title>Entre</title>
   <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
 </head>
 <body>
     <div class="navbar">
@@ -30,18 +31,19 @@
 
     <div class="container" id="login">
         <h2>Login</h2>
-        <form onsubmit="popup();" action="" method="post">
+        <form action="" method="post">
             <input type="text" placeholder="E-mail" autocomplete="off" name="email" required>
             <input type="password" placeholder="Senha" autocomplete="off" name="password" required>
             <button type="submit" name="sendbtn" id="login">Entrar</button>
         </form>
     </div>
     <?php 
-        if (isset($_POST[""])) {
+        if (isset($_POST["sendbtn"])) {
             include_once "connect.php";
 
             $tempemail = $_POST['email'];
             $temppass = $_POST['password'];
+            $status = 1;
             
             $sql = "SELECT * FROM usuario WHERE email = '$tempemail'";
 
@@ -60,68 +62,15 @@
                     $conn -> close();
 
                     $status = 0;
-                    // header("Location: index.php");
+                    header("Location: index.php");
                 } else {
                     $status = 1;
-                    // echo "Usuário não encontrado!";
+                    echo "Usuário não encontrado!";
                 }
+
+                echo "<script>popup($status);</script>";
             }
         }  
     ?>
-
-    <script>
-        function popup() {
-            let tempemail = <?php echo json_encode($tempemail); ?>;
-            let temppass = <?php echo json_encode($temppass); ?>;
-            let status = <?php echo json_encode($status); ?>;
-
-            let divpopup = document.createElement('div');
-            divpopup.classList.add('popup');
-
-            let divpopupcontent = document.createElement('div');
-            divpopupcontent.classList.add('popup-content');
-
-            let span = document.createElement('span');
-            span.classList.add('close');
-            span.setAttribute('id', 'closePopup');
-            span.innerHTML = "&times;";
-            
-            let h2 = document.createElement('h2');
-            let p = document.createElement('p');
-
-            if (status == 0) {
-                h2.innerHTML = "Sucesso";
-                p.innerHTML = "Logado(a) com sucesso!";
-            } else {
-                h2.innerHTML = "Erro";
-                p.innerHTML = "Usuário não encontrado!";
-            }
-
-            divpopup.appendChild(divpopupcontent);
-            divpopupcontent.append(span);
-            divpopupcontent.append(h2);
-            divpopupcontent.append(p);
-            
-            let body = document.getElementsByClassName('body');
-            body.appendChild(divpopup);
-
-            // document.getElementById('popup').style.display = 'block';
-
-            // document.getElementById('closePopup').addEventListener('click', function() {
-            //     document.getElementById('popup').style.display = 'none';
-            // });
-        }
-
-        
-
-       
-    </script>
-     <!-- <div class="popup" id="popup">
-        <div class="popup-content">
-            <span class="close" id="closePopup">&times;</span>
-            <h2><?php echo $popupTitle; ?></h2>
-            <p><?php echo $popupContent; ?></p>
-        </div>
-    </div> -->
 </body>
 </html>
