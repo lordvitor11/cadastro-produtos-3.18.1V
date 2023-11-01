@@ -26,6 +26,7 @@
         <ul>
             <?php 
                 if ($_SESSION['logged_in'] === true) {
+                    echo "<li class='cart-icon'><a href='#'><img src='assets/carrinho-de-compras.png'> <span class='item-count'>0</span></a></li>";
                     echo "<li title='Clique para sair!'><a href='quit.php'>Logado como <strong>{$_SESSION['username']}</strong>!</a></li>";
                 } else {
                     echo "

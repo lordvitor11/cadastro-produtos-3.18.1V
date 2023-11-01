@@ -61,7 +61,7 @@
                 if ($result->num_rows > 0) {
                     $status = 5;
                 } else {
-                    $sql = "INSERT INTO cliente(cpf, email, nome, senha) VALUES ('$cpf', '$email', '$user', MD5('$pass'))";
+                    $sql = "INSERT INTO cliente(cpf, email, nome, senha) VALUES ('$cpf', '$email', '$user', MD5($pass))";
 
                     if ($conn -> query($sql) === TRUE) {
                         $_SESSION['username'] = $user;
