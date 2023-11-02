@@ -18,6 +18,15 @@
         quantidade INT NOT NULL,
         preco VARCHAR(45) NOT NULL
     );
+
+    CREATE TABLE carrinho_compras (
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        id_produto INT PRIMARY KEY AUTO_INCREMENT,
+        id_usuario INT PRIMARY KEY AUTO_INCREMENT,
+
+        FOREIGN KEY(id_produto) REFERENCES produto(id),
+        FOREIGN KEY(id_usuario) REFERENCES cliente(id)
+    );
     ";
 
 
