@@ -28,12 +28,11 @@ body {
 }
   
 .navbar {
-    width: 100vw;
+    width: 100%;
     background-color: var(--blue-main);
     overflow: hidden;
     display: flex;
     justify-content: space-between;
-    padding: 0px 5px;
 }
   
 .navbar ul {
@@ -244,18 +243,18 @@ body {
     border-left: 2px solid #bbb9b9;
 }
 
-.content {
+/* .content {
     display: flex;
     flex-direction: column;
     width: 70vw;
     height: 100%;
-}
+} */
 
 .grid-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
-    padding: 20px;
+    padding: 10px;
 }
 
 .grid-item {
@@ -263,6 +262,10 @@ body {
     border: 1px solid var(--border-gray);
     padding: 20px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .grid-item img {
@@ -293,4 +296,20 @@ body {
 
 .grid-item button:hover {
     background-color: var(--blue-darker);
+}
+
+.grid-item .img {
+    height: 50%;
+    width: 60%;
+}
+
+.grid-item .img img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.grid-item .container {
+    min-height: 150px;
 }
