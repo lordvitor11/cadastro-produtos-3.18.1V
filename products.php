@@ -51,5 +51,51 @@
             ?>
         </ul>
     </div>
+
+    <div class="content">
+        <div class="grid-container">
+            <div class="grid-item">
+                <img src="caminho/para/sua/imagem1.jpg" alt="Produto 1">
+                <h3>Nome do Produto 1</h3>
+                <p>Descrição curta do Produto 1</p>
+                <button>Adicionar ao Carrinho</button>
+            </div>
+
+            <div class="grid-item">
+                <img src="caminho/para/sua/imagem1.jpg" alt="Produto 1">
+                <h3>Nome do Produto 1</h3>
+                <p>Descrição curta do Produto 1</p>
+                <button>Adicionar ao Carrinho</button>
+            </div>
+
+            <div class="grid-item">
+                <img src="caminho/para/sua/imagem1.jpg" alt="Produto 1">
+                <h3>Nome do Produto 1</h3>
+                <p>Descrição curta do Produto 1</p>
+                <button>Adicionar ao Carrinho</button>
+            </div>
+
+            <div class="grid-item">
+                <img src="caminho/para/sua/imagem1.jpg" alt="Produto 1">
+                <h3>Nome do Produto 1</h3>
+                <p>Descrição curta do Produto 1</p>
+                <button>Adicionar ao Carrinho</button>
+            </div>
+
+            <div class="grid-item">
+                <img src="caminho/para/sua/imagem1.jpg" alt="Produto 1">
+                <h3>Nome do Produto 1</h3>
+                <p>Descrição curta do Produto 1</p>
+                <button>Adicionar ao Carrinho</button>
+            </div>
+
+            <div class="grid-item">
+                <img src="caminho/para/sua/imagem1.jpg" alt="Produto 1">
+                <h3>Nome do Produto 1</h3>
+                <p>Descrição curta do Produto 1</p>
+                <button>Adicionar ao Carrinho</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html> 

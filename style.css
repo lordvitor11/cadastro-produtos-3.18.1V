@@ -21,9 +21,14 @@ body {
     margin: 0;
     padding: 0;
     background-color: var(--light-gray);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
   
 .navbar {
+    width: 100vw;
     background-color: var(--blue-main);
     overflow: hidden;
     display: flex;
@@ -237,4 +242,55 @@ body {
     grid-row: 1 / 1; 
     grid-column: 4 / 4; 
     border-left: 2px solid #bbb9b9;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    width: 70vw;
+    height: 100%;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.grid-item {
+    background-color: var(--white);
+    border: 1px solid var(--border-gray);
+    padding: 20px;
+    text-align: center;
+}
+
+.grid-item img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.grid-item h3 {
+    color: var(--blue-main);
+    margin-bottom: 10px;
+}
+
+.grid-item p {
+    color: var(--blue-darker);
+    margin-bottom: 10px;
+}
+
+.grid-item button {
+    background-color: var(--blue-main);
+    color: var(--white);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.grid-item button:hover {
+    background-color: var(--blue-darker);
 }
