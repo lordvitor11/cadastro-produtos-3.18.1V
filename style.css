@@ -42,8 +42,8 @@ body {
 }
   
 .navbar li a {
-    transition: all 0.35s ease;
     display: block;
+    transition: all 0.35s ease;
     color: white;
     text-align: center;
     padding: 14px 16px;
@@ -95,8 +95,12 @@ body {
 }
   
 .main {
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .main h1 {
@@ -198,3 +202,39 @@ body {
     font-size: 12px;
 }
 
+.carrinho {
+    background-color: #cecdcd;
+    width: 1000px;
+    height: 600px;
+    border: 2px solid #bbb9b9;
+    border-radius: 15px;
+    display: grid;
+}
+
+
+.notification {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    left: 40%;
+    top: 40%;
+    text-align: center;
+    border-bottom: 2px solid #bbb9b9;
+}
+
+.notification a, .notification button {
+    width: 100%;
+    cursor: pointer;
+}
+
+
+.products {
+    grid-row: 1 / 1; 
+    grid-column: 1 / 3;
+}
+
+.overview {
+    grid-row: 1 / 1; 
+    grid-column: 4 / 4; 
+    border-left: 2px solid #bbb9b9;
+}

@@ -28,6 +28,4 @@
         FOREIGN KEY(id_usuario) REFERENCES cliente(id)
     );
     ";
-
-
 ?>

@@ -18,6 +18,10 @@
             $row = $result->fetch_assoc();
             $qtd_items = $row['total_registros'];
         }
+
+        $carrinho_nav = "<li class='cart-icon'><a href='carrinho.php'><img src='assets/carrinho-de-compras.png'> <span class='item-count'>$qtd_items</span></a></li>";
+        $conta_nav = "<li title='Clique para sair!'><a href='quit.php'>Logado como <strong>{$_SESSION['username']}</strong>!</a></li>";
+        $sessao_nav = "<li><a href='signup.php'>Cadastro</a></li> <li><a href='login.php'>Login</a></li>";
     }
 ?>
 
@@ -39,13 +43,10 @@
         <ul>
             <?php 
                 if ($_SESSION['logged_in'] === true) {
-                    echo "<li class='cart-icon'><a href='carrinho.php'><img src='assets/carrinho-de-compras.png'> <span class='item-count'>$qtd_items</span></a></li>";
-                    echo "<li title='Clique para sair!'><a href='quit.php'>Logado como <strong>{$_SESSION['username']}</strong>!</a></li>";
+                    echo $carrinho_nav;
+                    echo $conta_nav;
                 } else {
-                    echo "
-                    <li><a href='signup.php'>Cadastro</a></li>
-                    <li><a href='login.php'>Login</a></li>
-                    ";
+                    echo $sessao_nav;
                 }
             ?>
         </ul>

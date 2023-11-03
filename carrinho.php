@@ -31,16 +31,18 @@
     if ($result) {
         $num_rows = $result->num_rows;
 
-        if ($num_rows > 1) {
-            echo "Foram encontrados mais de 1 resultado.";
-        } elseif ($num_rows === 1) {
-            echo "Foi encontrado exatamente 1 resultado.";
+        if ($num_rows >= 1) {
+            $carrinho = "<div class='products'></div> <div class='overview'></div>";
         } else {
-            echo "Nenhum resultado encontrado.";
+            $carrinho = "<div class='notification'><h2>Você ainda não tem itens no carrinho!</h2> <a href='products.php'><button>Adicionar</button></a></div>";
         }
     } else {
         echo "Erro na consulta: " . $conn->error;
     }
+
+    $carrinho_nav = "<li class='cart-icon'><a href='carrinho.php'><img src='assets/carrinho-de-compras.png'> <span class='item-count'>$qtd_items</span></a></li>";
+    $conta_nav = "<li title='Clique para sair!'><a href='quit.php'>Logado como <strong>{$_SESSION['username']}</strong>!</a></li>";
+    $sessao_nav = "<li><a href='signup.php'>Cadastro</a></li> <li><a href='login.php'>Login</a></li>";
 ?>
 
 <!DOCTYPE html>
@@ -61,20 +63,19 @@
         <ul>
             <?php 
                 if ($_SESSION['logged_in'] === true) {
-                    echo "<li class='cart-icon'><a href='#'><img src='assets/carrinho-de-compras.png'> <span class='item-count'>$qtd_items</span></a></li>";
-                    echo "<li title='Clique para sair!'><a href='quit.php'>Logado como <strong>{$_SESSION['username']}</strong>!</a></li>";
+                    echo $carrinho_nav;
+                    echo $conta_nav;
                 } else {
-                    echo "
-                    <li><a href='signup.php'>Cadastro</a></li>
-                    <li><a href='login.php'>Login</a></li>
-                    ";
+                    echo $sessao_nav;
                 }
             ?>
         </ul>
     </div>
 
     <div class="main">
-
+        <div class="carrinho"> 
+            <?php echo $carrinho; ?>
+        </div>
     </div>
 </body>
 </html> 
