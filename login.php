@@ -1,10 +1,8 @@
 <?php session_start();
     if (!isset($_SESSION['logged_in'])) {
         $_SESSION['logged_in'] = false;
-    }
-    
-    if (!isset($_SESSION['username'])) {
         $_SESSION['username'] = 'none';
+        $_SESSION['id'] = 'none';
     }
 ?>
 
@@ -43,7 +41,6 @@
 
             $tempemail = $_POST['email'];
             $temppass = $_POST['password'];
-            // $status = 1;
             
             $sql = "SELECT * FROM cliente WHERE email = '$tempemail'";
 
@@ -54,18 +51,18 @@
                     $user = $row['nome'];
                     $email = $row['email'];
                     $pass = $row['senha'];
+                    $id = $row['id'];
                 }
                 
                 if ($tempemail == $email && md5($temppass) == $pass) {
                     $_SESSION['username'] = $user;
                     $_SESSION['logged_in'] = true;
+                    $_SESSION['id'] = $id;
                     $conn -> close();
 
                     $status = 0;
-                    // header("Location: index.php");
                 } else {
                     $status = 1;
-                    // echo "Usuário não encontrado!";
                 }
 
             } else {

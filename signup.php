@@ -1,10 +1,8 @@
 <?php session_start();
     if (!isset($_SESSION['logged_in'])) {
         $_SESSION['logged_in'] = false;
-    }
-    
-    if (!isset($_SESSION['username'])) {
         $_SESSION['username'] = 'none';
+        $_SESSION['id'] = 'none';
     }
 ?>
 
@@ -66,6 +64,11 @@
                     if ($conn -> query($sql) === TRUE) {
                         $_SESSION['username'] = $user;
                         $_SESSION['logged_in'] = true;
+
+                        $sql = "SELECT id FROM cliente WHERE email = '$email'";
+                        $result = $conn->query($sql);
+                        $_SESSION['id'] =  $result;
+                        
                         $conn -> close();
                         $status = 3;
                     } else {

@@ -2,6 +2,7 @@
     if (!isset($_SESSION['logged_in'])) {
         $_SESSION['logged_in'] = false;
         $_SESSION['username'] = 'none';
+        $_SESSION['id'] = 'none';
     } else {
         include_once 'connect.php';
 

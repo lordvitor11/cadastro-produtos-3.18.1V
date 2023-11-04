@@ -2,6 +2,7 @@
     if (!isset($_SESSION['logged_in'])) {
         $_SESSION['logged_in'] = false;
         $_SESSION['username'] = 'none';
+        $_SESSION['id'] = 'none';
     } else {
         include_once 'connect.php';
 
@@ -34,6 +35,12 @@
     }
 
     $sessao_nav = "<li><a href='signup.php'>Cadastro</a></li> <li><a href='login.php'>Login</a></li>";
+
+    // if (isset($_POST['funcao']) && $_POST['funcao'] == 'add_product') {
+    //     add_product($_POST['valor']);
+    //     echo "Função add_product foi chamada!";
+    //     exit; 
+    // }
 ?>
 
 <!DOCTYPE html>
@@ -66,12 +73,8 @@
     <div class="content">
         <div class="grid-container">
             <?php 
-                // echo "<pre>";
-                // // print_r($resultados);
-                // echo $resultados[0]['nome'];
-                // echo "</pre>";
-
                 foreach ($resultados as $item) {
+                    $id = $item['id'];
                     $nome = $item['nome'];
                     $img = $item['img'];
                     $preco = $item['preco'];
@@ -84,19 +87,31 @@
                         <div class='container'>
                             <h3>$nome</h3>
                             <p>R$ {$preco},00</p>
-                            <button>Adicionar ao Carrinho</button>
+                            <button id='$id'>Adicionar ao Carrinho</button>
                         </div>
                     </div>
                     ";
                 }
             ?>
-            <!-- <div class="grid-item">
-                <img src="caminho/para/sua/imagem1.jpg" alt="Produto 1">
-                <h3>Nome do Produto 1</h3>
-                <p>Descrição curta do Produto 1</p>
-                <button>Adicionar ao Carrinho</button>
-            </div> -->
         </div>
     </div>
+
+    <script>
+        let buttons = document.querySelectorAll(".container button");
+
+        function send(id) {
+            let xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("POST", "<?php echo $_SERVER['PHP_SELF']; ?>", true);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.send("funcao=add_product&valor=" + id);
+        }
+
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].addEventListener('click', function(event) {
+                let id = event.target.id;
+                window.location.href = "add_product.php?id=" + id;
+            });
+        }
+    </script>
 </body>
 </html> 
