@@ -31,6 +31,9 @@ function popup(status) {
     } else if (status == 5) {
         h2.innerHTML = "Erro";
         p.innerHTML = "E-mail já cadastrado!";
+    } else if (status == 6) {
+        h2.innerHTML = "Sucesso";
+        p.innerHTML = "O produto foi adicionado ao carrinho!";
     }
 
     divpopup.appendChild(divpopupcontent);
@@ -38,16 +41,20 @@ function popup(status) {
     divpopupcontent.appendChild(h2);
     divpopupcontent.appendChild(p);
     
-    let body = document.querySelector(".container");
-    body.appendChild(divpopup);
+    document.addEventListener("DOMContentLoaded", function() {
+        let body = document.body;
+        body.appendChild(divpopup);
 
-    document.getElementById('closePopup').addEventListener('click', function() {
-        if (status == 0) {
-            window.location.href = "index.php";
-        } else if (status == 3) {
-            window.location.href = "index.php";
-        }
-        
-        divpopup.parentNode.removeChild(divpopup);
+        document.getElementById('closePopup').addEventListener('click', function() {
+            if (status == 0) {
+                window.location.href = "index.php";
+            } else if (status == 3) {
+                window.location.href = "index.php";
+            }
+            
+            divpopup.parentNode.removeChild(divpopup);
+        });
     });
+
+    
 }

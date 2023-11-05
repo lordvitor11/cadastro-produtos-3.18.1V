@@ -6,11 +6,16 @@
     } else {
         include_once 'connect.php';
 
-        $username = $conn->real_escape_string($_SESSION['username']);
+        if (isset($_GET['popup'])) {
+            $status = $_GET['popup'];
+            echo "<script src='script.js'></script>";
+            echo "<script>popup($status);</script>";
+        }
+
+        $id = $conn->real_escape_string($_SESSION['id']);
         $sql = "SELECT COUNT(*) AS total_registros 
-        FROM cliente 
-        INNER JOIN carrinho_compras ON cliente.id = carrinho_compras.id_usuario 
-        WHERE cliente.nome = '$username'";
+        FROM carrinho_compras 
+        WHERE id_usuario = '$id'";
 
         $result = $conn->query($sql);
         $qtd_items = 0;
@@ -35,12 +40,6 @@
     }
 
     $sessao_nav = "<li><a href='signup.php'>Cadastro</a></li> <li><a href='login.php'>Login</a></li>";
-
-    // if (isset($_POST['funcao']) && $_POST['funcao'] == 'add_product') {
-    //     add_product($_POST['valor']);
-    //     echo "Função add_product foi chamada!";
-    //     exit; 
-    // }
 ?>
 
 <!DOCTYPE html>
@@ -70,7 +69,7 @@
         </ul>
     </div>
 
-    <div class="content">
+    <!-- <div class="container"> -->
         <div class="grid-container">
             <?php 
                 foreach ($resultados as $item) {

@@ -5,11 +5,10 @@
     } else {
         include_once 'connect.php';
 
-        $username = $conn->real_escape_string($_SESSION['username']);
+        $id = $conn->real_escape_string($_SESSION['id']);
         $sql = "SELECT COUNT(*) AS total_registros 
-        FROM cliente 
-        INNER JOIN carrinho_compras ON cliente.id = carrinho_compras.id_usuario 
-        WHERE cliente.nome = '$username'";
+        FROM carrinho_compras 
+        WHERE id_usuario = '$id'";
 
         $result = $conn->query($sql);
         $qtd_items = 0;
@@ -74,7 +73,26 @@
 
     <div class="main">
         <div class="carrinho"> 
-            <?php echo $carrinho; ?>
+            <?php echo $carrinho;
+
+            $id_user = $_SESSION['id'];
+
+            $sql = "SELECT produto.nome AS nome_produto, COUNT(carrinho_compras.id_produto) AS quantidade 
+            FROM carrinho_compras 
+            INNER JOIN produto ON carrinho_compras.id_produto = produto.id
+            WHERE carrinho_compras.id_usuario = $id_user
+            GROUP BY carrinho_compras.id_produto";
+
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    echo "Produto: " . $row["nome_produto"]. " - Quantidade: " . $row["quantidade"]. "<br>";
+                }
+            } else {
+                echo "Nenhum resultado encontrado para este usuário.";
+            }
+            ?>
         </div>
     </div>
 </body>

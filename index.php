@@ -6,11 +6,10 @@
     } else {
         include_once 'connect.php';
 
-        $username = $conn->real_escape_string($_SESSION['username']);
+        $id = $conn->real_escape_string($_SESSION['id']);
         $sql = "SELECT COUNT(*) AS total_registros 
-        FROM cliente 
-        INNER JOIN carrinho_compras ON cliente.id = carrinho_compras.id_usuario 
-        WHERE cliente.nome = '$username'";
+        FROM carrinho_compras 
+        WHERE id_usuario = '$id'";
 
         $result = $conn->query($sql);
         $qtd_items = 0;

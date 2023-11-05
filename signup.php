@@ -67,7 +67,9 @@
 
                         $sql = "SELECT id FROM cliente WHERE email = '$email'";
                         $result = $conn->query($sql);
-                        $_SESSION['id'] =  $result;
+
+                        $row = $result->fetch_assoc();
+                        $_SESSION['id'] = $row['id'];
                         
                         $conn -> close();
                         $status = 3;
