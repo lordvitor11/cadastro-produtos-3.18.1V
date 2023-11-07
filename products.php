@@ -69,7 +69,6 @@
         </ul>
     </div>
 
-    <!-- <div class="container"> -->
         <div class="grid-container">
             <?php 
                 foreach ($resultados as $item) {
@@ -93,8 +92,7 @@
                 }
             ?>
         </div>
-    </div>
-
+        
     <script>
         let buttons = document.querySelectorAll(".container button");
 

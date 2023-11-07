@@ -73,26 +73,48 @@
 
     <div class="main">
         <div class="carrinho"> 
-            <?php echo $carrinho;
+            <div class="products">
+                <?php
+                    $id_user = $_SESSION['id'];
 
-            $id_user = $_SESSION['id'];
+                    $sql = "SELECT produto.nome as nome, produto.img as img, COUNT(carrinho_compras.id_produto) AS quantidade 
+                    FROM carrinho_compras 
+                    INNER JOIN produto ON carrinho_compras.id_produto = produto.id
+                    WHERE carrinho_compras.id_usuario = $id_user
+                    GROUP BY carrinho_compras.id_produto";
 
-            $sql = "SELECT produto.nome AS nome_produto, COUNT(carrinho_compras.id_produto) AS quantidade 
-            FROM carrinho_compras 
-            INNER JOIN produto ON carrinho_compras.id_produto = produto.id
-            WHERE carrinho_compras.id_usuario = $id_user
-            GROUP BY carrinho_compras.id_produto";
 
-            $result = $conn->query($sql);
+                    $dados_carrinho = array();
 
-            if ($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
-                    echo "Produto: " . $row["nome_produto"]. " - Quantidade: " . $row["quantidade"]. "<br>";
-                }
-            } else {
-                echo "Nenhum resultado encontrado para este usuário.";
-            }
-            ?>
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        while($row = $result->fetch_assoc()) {
+                            $dados_carrinho[] = $row;
+                        }
+
+                        foreach ($dados_carrinho as $item) {
+                            $nome = $item["nome"];
+                            $img = $item["img"];
+                            $qtd = $item["quantidade"];
+
+                            echo "
+                                <div class='carrinho-item'>
+                                    <img src='$img'>
+                                    <div class='conteudo'>
+                                        <h3>$nome</h3>
+                                        <span>Quantidade: $qtd</span>
+                                    </div> 
+                                </div>
+                            ";
+                        }
+                    } else {
+                        echo "Nenhum resultado encontrado para este usuário.";
+                    }
+                ?>
+            </div>
+
+            <div class="overview"></div>
         </div>
     </div>
 </body>
