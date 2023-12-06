@@ -19,6 +19,19 @@
         }
     }
 
+    if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') {
+        $id_usuario = $conn->real_escape_string($_SESSION['id']);
+        $id_produto = $_POST['id'];
+
+        if ($_POST['tipo'] == "add") {
+            $sql = "INSERT INTO carrinho_compras (id_produto, id_usuario) VALUES ('$id_produto', '$id_usuario')";
+        } else {
+            $sql = "DELETE FROM carrinho_compras WHERE id_produto = $id_produto AND id_usuario = $id_usuario LIMIT 1";
+        }
+
+        $conn->query($sql);
+    }
+
     include_once 'connect.php';
 
     $username = $conn->real_escape_string($_SESSION['username']);
@@ -52,6 +65,8 @@
     <title>Página Principal</title>
     <link rel="stylesheet" href="style.css">
 </head>
+<script src="script.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <body>
     <div class="navbar">
         <ul>
@@ -77,30 +92,55 @@
             <?php echo $carrinho;
                 $id_user = $_SESSION['id'];
 
-                $sql = "SELECT produto.nome AS nome_produto, COUNT(carrinho_compras.id_produto) AS quantidade, produto.preco AS preco
+                $sql = "SELECT produto.nome AS nome_produto, COUNT(carrinho_compras.id_produto) AS quantidade, produto.preco AS preco, produto.img AS itemImage
                         FROM carrinho_compras 
                         INNER JOIN produto ON carrinho_compras.id_produto = produto.id
                         WHERE carrinho_compras.id_usuario = '$id_user'
                         GROUP BY carrinho_compras.id_produto";
 
                 $result = $conn->query($sql);
+                $total = 0;
+                $tempIndex = 0;
 
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
+                        $img = $row['itemImage'];
+                        $preco = "R$" . number_format($row['preco'], 2, ',', '.');
                         echo "<div class='cart-item'>
-                                <img src='caminho_da_imagem.jpg'> <!-- Substitua pelo caminho real da imagem -->
+                                <img src='{$img}'>
                                 <span>{$row['nome_produto']}</span>
-                                <span class='preco'> R$ {$row['preco']} - {$row['quantidade']} Und.</span>
-                            </div>";
+
+                                <div class='controls'>
+                                    <span class='preco'> {$preco}</span>
+                
+                                    <div class='counter'>
+                                        <button class='$tempIndex' id='remove' name='add' onclick='quantity(this)'>-</button>
+                                        <div id='$tempIndex' class='number'>{$row['quantidade']}</div>
+                                        <button class='$tempIndex' id='add' onclick='quantity(this);'>+</button>
+                                    </div>
+                                    <button class='trash-button'></button>
+                                </div>
+
+                             </div>";
+
+                        $total += $row['quantidade'] * $row['preco'];
+
+                        $tempIndex++;
                     }
+
+                    $total = number_format($total, 2, ',', '.');
+
                 } else {
                     echo "Nenhum resultado encontrado para este usuário.";
                 }
-            ?>
+
+
+                ?>
         </div>
 
         <div class="cart-subtotal">
-            Subtotal: R$ 105,00
+            Subtotal: R$<?php echo $total ?> <br>
+            <button class="finish-button">Finalizar compra</button>
         </div>
 
     </div>

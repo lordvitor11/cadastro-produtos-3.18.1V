@@ -59,3 +59,36 @@ function popup(status) {
         });
     });
 }
+
+function quantity(input) {
+
+    let xhr = new XMLHttpRequest();
+
+    xhr.open('POST', './carrinho.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            console.log(xhr.responseText);
+            setTimeout(() => {
+                location.reload();
+
+            }, 2000);
+        }
+    };
+
+    let elementValue = document.getElementById(input.classList.item(0));
+    let valor = parseInt(elementValue.innerHTML);
+
+    let dados = "";
+
+    if (input.id == "add") {
+        elementValue.innerHTML = valor + 1;
+        dados = `tipo=add&id=${input.id}`;
+    } else {
+        elementValue.innerHTML = valor > 0 ? valor - 1 : 0;
+        dados = `tipo=remove&id=${input.id}`;
+    }
+
+    xhr.send(dados);
+}

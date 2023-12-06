@@ -342,6 +342,7 @@ body {
 
 .cart-items {
     margin-bottom: 20px;
+    padding: 0px 15px;
 }
 
 .cart-subtotal {
@@ -352,4 +353,54 @@ body {
 
 .preco {
     margin-left: 20px;
+}
+
+.finish-button {
+    background-color: var(--blue-main);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    color: white;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.finish-button:hover {
+    background-color: var(--blue-darker);
+}
+
+.trash-button {
+    background-image: url(assets/trash-icon.png);
+    background-size: cover;
+    border: none;
+    height: 16px;
+    width: 16px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.counter {
+    display: flex;
+    border: 1px solid gray;
+    width: fit-content;
+    margin: 50px auto;
+}
+
+.counter button {
+    border: none;
+    background-color: white;
+    padding: 3.5px
+}
+
+.number {
+    padding: 0px 5px
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: fit-content;
+    gap: 15px;
 }
