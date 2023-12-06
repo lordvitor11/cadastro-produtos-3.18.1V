@@ -71,51 +71,38 @@
         </ul>
     </div>
 
-    <div class="main">
-        <div class="carrinho"> 
-            <div class="products">
-                <?php
-                    $id_user = $_SESSION['id'];
+    <div class="cart-container">
 
-                    $sql = "SELECT produto.nome as nome, produto.img as img, COUNT(carrinho_compras.id_produto) AS quantidade 
-                    FROM carrinho_compras 
-                    INNER JOIN produto ON carrinho_compras.id_produto = produto.id
-                    WHERE carrinho_compras.id_usuario = $id_user
-                    GROUP BY carrinho_compras.id_produto";
+        <div class="cart-items">
+            <?php echo $carrinho;
+                $id_user = $_SESSION['id'];
 
+                $sql = "SELECT produto.nome AS nome_produto, COUNT(carrinho_compras.id_produto) AS quantidade, produto.preco AS preco
+                        FROM carrinho_compras 
+                        INNER JOIN produto ON carrinho_compras.id_produto = produto.id
+                        WHERE carrinho_compras.id_usuario = '$id_user'
+                        GROUP BY carrinho_compras.id_produto";
 
-                    $dados_carrinho = array();
+                $result = $conn->query($sql);
 
-                    $result = $conn->query($sql);
-
-                    if ($result->num_rows > 0) {
-                        while($row = $result->fetch_assoc()) {
-                            $dados_carrinho[] = $row;
-                        }
-
-                        foreach ($dados_carrinho as $item) {
-                            $nome = $item["nome"];
-                            $img = $item["img"];
-                            $qtd = $item["quantidade"];
-
-                            echo "
-                                <div class='carrinho-item'>
-                                    <img src='$img'>
-                                    <div class='conteudo'>
-                                        <h3>$nome</h3>
-                                        <span>Quantidade: $qtd</span>
-                                    </div> 
-                                </div>
-                            ";
-                        }
-                    } else {
-                        echo "Nenhum resultado encontrado para este usuário.";
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<div class='cart-item'>
+                                <img src='caminho_da_imagem.jpg'> <!-- Substitua pelo caminho real da imagem -->
+                                <span>{$row['nome_produto']}</span>
+                                <span class='preco'> R$ {$row['preco']} - {$row['quantidade']} Und.</span>
+                            </div>";
                     }
-                ?>
-            </div>
-
-            <div class="overview"></div>
+                } else {
+                    echo "Nenhum resultado encontrado para este usuário.";
+                }
+            ?>
         </div>
+
+        <div class="cart-subtotal">
+            Subtotal: R$ 105,00
+        </div>
+
     </div>
 </body>
 </html> 

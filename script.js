@@ -34,6 +34,9 @@ function popup(status) {
     } else if (status == 6) {
         h2.innerHTML = "Sucesso";
         p.innerHTML = "O produto foi adicionado ao carrinho!";
+    } else if (status == 7) {
+        h2.innerHTML = "Erro";
+        p.innerHTML = "Você precisa estar logado(a) para adicionar produtos ao carrinho!";
     }
 
     divpopup.appendChild(divpopupcontent);
@@ -55,6 +58,4 @@ function popup(status) {
             divpopup.parentNode.removeChild(divpopup);
         });
     });
-
-    
 }

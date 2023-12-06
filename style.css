@@ -212,8 +212,7 @@ body {
     height: 600px;
     border: 2px solid #bbb9b9;
     border-radius: 15px;
-    display: flex;
-    /* flex-direction: column; */
+    display: grid;
 }
 
 
@@ -234,20 +233,19 @@ body {
 
 
 .products {
-    width: 65%;
-    height: 100%;
-    margin: 20px;
+    grid-row: 1 / 1; 
+    grid-column: 1 / 3;
 }
 
 .overview {
-    width: 35%;
+    grid-row: 1 / 1; 
+    grid-column: 4 / 4; 
     border-left: 2px solid #bbb9b9;
 }
 
 .grid-container {
     display: grid;
-    width: 80%;
-    grid-template-columns: repeat(4, 0.2fr);
+    grid-template-columns: repeat(3, 0.5fr);
     gap: 20px;
     padding: 10px;
 }
@@ -286,7 +284,7 @@ body {
     padding: 8px 16px;
     border-radius: 5px;
     cursor: pointer;
-    transition: all 0.5s ease;
+    transition: background-color 0.3s ease;
 }
 
 .grid-item button:hover {
@@ -294,11 +292,8 @@ body {
 }
 
 .grid-item .img {
-    width: 50%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 50%;
+    width: 60%;
 }
 
 .grid-item .img img {
@@ -309,17 +304,52 @@ body {
 }
 
 .grid-item .container {
-    max-width: 200px;
     min-height: 150px;
 }
 
-.carrinho-item {
-    display: flex;
-    justify-content: space-around;
-    border: 1px solid #bbb9b9;
-    margin-bottom: 10px;
+.lista-produtos {
+    width: 80%; /* Largura da div do carrinho */
+    height: 200px; /* Altura máxima antes de ativar a barra de rolagem */
+    border: 1px solid #ccc;
+    overflow-y: auto; /* Isso ativa a barra de rolagem vertical quando necessário */
+    background-color: red;
 }
 
-.carrinho-item img{
-    width: 20%;
+/* TESTE CARRINHO */
+
+.cart-container {
+    width: fit-content;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cart-item {
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-item img {
+    max-width: 50px;
+    max-height: 50px;
+    margin-right: 10px;
+}
+
+.cart-items {
+    margin-bottom: 20px;
+}
+
+.cart-subtotal {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: right;
+}
+
+.preco {
+    margin-left: 20px;
 }

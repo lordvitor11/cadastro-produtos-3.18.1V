@@ -6,10 +6,14 @@
 
     // echo "$id_produto, $id_usuario";
 
-    $sql = "INSERT INTO carrinho_compras(id_produto, id_usuario) VALUES ('$id_produto', '$id_usuario')";
-    if ($conn -> query($sql) === TRUE) {
-        header("Location: products.php?popup=6");
+    if ($id_usuario != "none") {
+        $sql = "INSERT INTO carrinho_compras(id_produto, id_usuario) VALUES ('$id_produto', '$id_usuario')";
+        if ($conn -> query($sql) === TRUE) {
+            header("Location: products.php?popup=6");
+        } else {
+            echo "Erro";
+        }
     } else {
-        echo "Erro";
+        header("Location: products.php?popup=7");
     }
 ?>
