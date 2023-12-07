@@ -64,7 +64,7 @@ function quantity(input) {
 
     let xhr = new XMLHttpRequest();
 
-    xhr.open('POST', './carrinho.php', true);
+    xhr.open('POST', 'carrinho.php', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     xhr.onreadystatechange = function() {
@@ -72,13 +72,13 @@ function quantity(input) {
             console.log(xhr.responseText);
             setTimeout(() => {
                 location.reload();
-
             }, 2000);
         }
     };
 
     let elementValue = document.getElementById(input.classList.item(0));
-    let valor = parseInt(elementValue.innerHTML);
+    let counter = document.querySelector(".counter .number");
+    let valor = parseInt(counter.innerHTML);
 
     let dados = "";
 

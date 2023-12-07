@@ -19,7 +19,7 @@
         }
     }
 
-    if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') {
+    if (isset($_POST['tipo'])) {
         $id_usuario = $conn->real_escape_string($_SESSION['id']);
         $id_produto = $_POST['id'];
 
@@ -65,9 +65,9 @@
     <title>Página Principal</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<script src="script.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <body>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="script.js"></script>
     <div class="navbar">
         <ul>
             <li><a href="index.php">Inicio</a></li>
@@ -87,12 +87,11 @@
     </div>
 
     <div class="cart-container">
-
         <div class="cart-items">
             <?php echo $carrinho;
                 $id_user = $_SESSION['id'];
 
-                $sql = "SELECT produto.nome AS nome_produto, COUNT(carrinho_compras.id_produto) AS quantidade, produto.preco AS preco, produto.img AS itemImage
+                $sql = "SELECT produto.id AS id_produto, produto.nome AS nome_produto, COUNT(carrinho_compras.id_produto) AS quantidade, produto.preco AS preco, produto.img AS itemImage
                         FROM carrinho_compras 
                         INNER JOIN produto ON carrinho_compras.id_produto = produto.id
                         WHERE carrinho_compras.id_usuario = '$id_user'
@@ -106,7 +105,8 @@
                     while ($row = $result->fetch_assoc()) {
                         $img = $row['itemImage'];
                         $preco = "R$" . number_format($row['preco'], 2, ',', '.');
-                        echo "<div class='cart-item'>
+                        $id = $row['id_produto'];
+                        echo "<div class='cart-item' id='{$id}'>
                                 <img src='{$img}'>
                                 <span>{$row['nome_produto']}</span>
 
