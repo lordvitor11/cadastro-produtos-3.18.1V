@@ -61,34 +61,47 @@ function popup(status) {
 }
 
 function quantity(input) {
-
     let xhr = new XMLHttpRequest();
-
-    xhr.open('POST', 'carrinho.php', true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
     xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
+        if (xhr.readyState === 4 && xhr.status === 200) {
             console.log(xhr.responseText);
-            setTimeout(() => {
-                location.reload();
-            }, 2000);
+            location.reload();
         }
     };
 
-    let elementValue = document.getElementById(input.classList.item(0));
-    let counter = document.querySelector(".counter .number");
+    xhr.open('POST', 'add_quantity.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    let divs = document.getElementsByClassName("cart-item");
+
+    function selecionarDivPorId(idDesejado) {
+        for (let i = 0; i < divs.length; i++) {
+            let divAtual = divs[i];
+            if (divAtual.id === idDesejado) {
+                return divAtual;
+            }
+        }
+        return null;
+    }
+
+    let div = selecionarDivPorId(input.className);
+    let counter = div.querySelector(".qtd");
     let valor = parseInt(counter.innerHTML);
 
     let dados = "";
 
     if (input.id == "add") {
-        elementValue.innerHTML = valor + 1;
-        dados = `tipo=add&id=${input.id}`;
+        counter.innerText = valor + 1;
+        dados = `tipo=add&id=${input.className}`;
     } else {
-        elementValue.innerHTML = valor > 0 ? valor - 1 : 0;
-        dados = `tipo=remove&id=${input.id}`;
+        counter.innerHTML = valor > 0 ? valor - 1 : 0;
+        dados = `tipo=remove&id=${input.className}`;
     }
 
     xhr.send(dados);
+}
+
+function toggleMenu() {
+    const nav = document.querySelector('.navbar');
+    nav.classList.toggle('show');
 }

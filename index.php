@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <script src="script.js"></script>
     <div class="navbar">
         <ul>
             <li><a href="index.php">Inicio</a></li>
@@ -51,6 +52,8 @@
             ?>
         </ul>
     </div>
+    <!-- <div class="menu-toggle" onclick="toggleMenu()">☰</div> -->
+
 
     <div class="main">
         <h1>Projeto Carrinho de Compras</h1>

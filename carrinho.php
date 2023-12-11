@@ -19,19 +19,6 @@
         }
     }
 
-    if (isset($_POST['tipo'])) {
-        $id_usuario = $conn->real_escape_string($_SESSION['id']);
-        $id_produto = $_POST['id'];
-
-        if ($_POST['tipo'] == "add") {
-            $sql = "INSERT INTO carrinho_compras (id_produto, id_usuario) VALUES ('$id_produto', '$id_usuario')";
-        } else {
-            $sql = "DELETE FROM carrinho_compras WHERE id_produto = $id_produto AND id_usuario = $id_usuario LIMIT 1";
-        }
-
-        $conn->query($sql);
-    }
-
     include_once 'connect.php';
 
     $username = $conn->real_escape_string($_SESSION['username']);
@@ -46,7 +33,7 @@
         if ($num_rows >= 1) {
             $carrinho = "<div class='products'></div> <div class='overview'></div>";
         } else {
-            $carrinho = "<div class='notification'><h2>Você ainda não tem itens no carrinho!</h2> <a href='products.php'><button>Adicionar</button></a></div>";
+            $carrinho = "";
         }
     } else {
         echo "Erro na consulta: " . $conn->error;
@@ -95,11 +82,12 @@
                         FROM carrinho_compras 
                         INNER JOIN produto ON carrinho_compras.id_produto = produto.id
                         WHERE carrinho_compras.id_usuario = '$id_user'
-                        GROUP BY carrinho_compras.id_produto";
+                        GROUP BY carrinho_compras.id_produto
+                        ORDER BY carrinho_compras.id_produto";
 
                 $result = $conn->query($sql);
                 $total = 0;
-                $tempIndex = 0;
+            
 
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
@@ -114,9 +102,9 @@
                                     <span class='preco'> {$preco}</span>
                 
                                     <div class='counter'>
-                                        <button class='$tempIndex' id='remove' name='add' onclick='quantity(this)'>-</button>
-                                        <div id='$tempIndex' class='number'>{$row['quantidade']}</div>
-                                        <button class='$tempIndex' id='add' onclick='quantity(this);'>+</button>
+                                        <button class='{$id}' id='remove' name='add' onclick='quantity(this)'>-</button>
+                                        <div class='number'><span class='qtd'>{$row['quantidade']}</span></div>
+                                        <button class='{$id}' id='add' onclick='quantity(this);'>+</button>
                                     </div>
                                     <button class='trash-button'></button>
                                 </div>
@@ -124,24 +112,25 @@
                              </div>";
 
                         $total += $row['quantidade'] * $row['preco'];
-
-                        $tempIndex++;
                     }
 
                     $total = number_format($total, 2, ',', '.');
 
+                    echo "<div class='cart-subtotal'>
+                        Subtotal: R$<?php echo $total ?> <br>
+                        <button class='finish-button'>Finalizar compra</button>
+                    </div>";
+
                 } else {
-                    echo "Nenhum resultado encontrado para este usuário.";
+                    echo "<h2>Você ainda não tem itens no carrinho </h2><br>"; 
+                    echo "<a href='products.php'><button class='null-button'>Adicionar</button></a></div>";
                 }
 
 
                 ?>
         </div>
 
-        <div class="cart-subtotal">
-            Subtotal: R$<?php echo $total ?> <br>
-            <button class="finish-button">Finalizar compra</button>
-        </div>
+        
 
     </div>
 </body>
