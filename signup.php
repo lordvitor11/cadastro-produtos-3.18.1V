@@ -15,16 +15,19 @@
   <script src="script.js"></script>
 </head>
 <body>
+    <script src="script.js"></script>
+
     <div class="navbar">
-        
-        <ul>
-            <li><a href="index.php">Inicio</a></li>
-            <li><a href="products.php">Produtos</a></li>
-        </ul>
-        
-        <ul>
-            <li><a href="signup.php">Cadastro</a></li>
-            <li><a href="login.php">Login</a></li>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <ul class="nav-list">
+            <ul>
+                <li><a href="index.php">Inicio</a></li>
+                <li><a href="products.php">Produtos</a></li>
+            </ul>
         </ul>
     </div>
 
@@ -35,6 +38,7 @@
             <input type="text" placeholder="CPF" name="cpf" autocomplete="off" required>
             <input type="email" placeholder="E-mail" name="email" autocomplete="off" required>
             <input type="password" placeholder="Senha" name="pass" autocomplete="off" required>
+            <span>Já tem uma conta? <a href="login.php">Entre!</a></span> <br>
             <button type="submit" name="sendbtn">Cadastrar</button>
         </form>
     </div>

@@ -25,7 +25,7 @@
             $qtd_items = $row['total_registros'];
         }
 
-        $carrinho_nav = "<li class='cart-icon'><a href='carrinho.php'><img src='assets/carrinho-de-compras.png'> <span class='item-count'>$qtd_items</span></a></li>";
+        $carrinho_nav = "<li class='cart-icon'><a href='carrinho.php'>&#128722; <span class='item-count'>$qtd_items</span></a></li>";
         $conta_nav = "<li title='Clique para sair!'><a href='quit.php'>Logado como <strong>{$_SESSION['username']}</strong>!</a></li>";
 
         $query = "SELECT * FROM produto";
@@ -51,21 +51,29 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+   
     <div class="navbar">
-        <ul>
-            <li><a href="index.php">Inicio</a></li>
-            <li><a href="products.php">Produtos</a></li>
-        </ul>
-        
-        <ul>
-            <?php 
-                if ($_SESSION['logged_in'] === true) {
-                    echo $carrinho_nav;
-                    echo $conta_nav;
-                } else {
-                    echo $sessao_nav;
-                }
-            ?>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <ul class="nav-list">
+            <ul>
+                <li><a href="index.php">Inicio</a></li>
+                <li><a href="products.php">Produtos</a></li>
+            </ul>
+            <ul>
+                <?php 
+                    if ($_SESSION['logged_in'] === true) {
+                        echo $carrinho_nav;
+                        echo $conta_nav;
+                    } else {
+                        echo $sessao_nav;
+                    }
+                ?>
+            </ul>
         </ul>
     </div>
 
@@ -77,6 +85,7 @@
                     $nome = $item['nome'];
                     $img = $item['img'];
                     $preco = $item['preco'];
+                    $preco = number_format($preco, 2, ',', '.');
 
                     echo "
                     <div class='grid-item'>
@@ -85,7 +94,7 @@
                         </div>
                         <div class='container'>
                             <h3>$nome</h3>
-                            <p>R$ {$preco},00</p>
+                            <p>R$ {$preco}</p>
                             <button id='$id'>Adicionar ao Carrinho</button>
                         </div>
                     </div>
@@ -112,5 +121,6 @@
             });
         }
     </script>
+    <script src="script.js"></script>
 </body>
 </html> 

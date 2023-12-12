@@ -102,6 +102,10 @@ function quantity(input) {
 }
 
 function toggleMenu() {
-    const nav = document.querySelector('.navbar');
-    nav.classList.toggle('show');
+    var navList = document.querySelector('.nav-list');
+    navList.classList.toggle('show');
+}
+
+function redirect() {
+    window.location.href = "extrato.php";
 }

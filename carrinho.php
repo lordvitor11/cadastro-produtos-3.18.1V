@@ -39,7 +39,7 @@
         echo "Erro na consulta: " . $conn->error;
     }
 
-    $carrinho_nav = "<li class='cart-icon'><a href='carrinho.php'><img src='assets/carrinho-de-compras.png'> <span class='item-count'>$qtd_items</span></a></li>";
+    $carrinho_nav = "<li class='cart-icon'><a href='carrinho.php'>&#128722; <span class='item-count'>$qtd_items</span></a></li>";
     $conta_nav = "<li title='Clique para sair!'><a href='quit.php'>Logado como <strong>{$_SESSION['username']}</strong>!</a></li>";
     $sessao_nav = "<li><a href='signup.php'>Cadastro</a></li> <li><a href='login.php'>Login</a></li>";
 ?>
@@ -55,21 +55,28 @@
 <body>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="script.js"></script>
+    
     <div class="navbar">
-        <ul>
-            <li><a href="index.php">Inicio</a></li>
-            <li><a href="products.php">Produtos</a></li>
-        </ul>
-        <img src="" alt="">
-        <ul>
-            <?php 
-                if ($_SESSION['logged_in'] === true) {
-                    echo $carrinho_nav;
-                    echo $conta_nav;
-                } else {
-                    echo $sessao_nav;
-                }
-            ?>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <ul class="nav-list">
+            <ul>
+                <li><a href="index.php">Inicio</a></li>
+                <li><a href="products.php">Produtos</a></li>
+            </ul>
+            <ul>
+                <?php 
+                    if ($_SESSION['logged_in'] === true) {
+                        echo $carrinho_nav;
+                        echo $conta_nav;
+                    } else {
+                        echo $sessao_nav;
+                    }
+                ?>
+            </ul>
         </ul>
     </div>
 
@@ -106,7 +113,6 @@
                                         <div class='number'><span class='qtd'>{$row['quantidade']}</span></div>
                                         <button class='{$id}' id='add' onclick='quantity(this);'>+</button>
                                     </div>
-                                    <button class='trash-button'></button>
                                 </div>
 
                              </div>";
@@ -115,23 +121,16 @@
                     }
 
                     $total = number_format($total, 2, ',', '.');
-
                     echo "<div class='cart-subtotal'>
-                        Subtotal: R$<?php echo $total ?> <br>
-                        <button class='finish-button'>Finalizar compra</button>
-                    </div>";
-
+                            Subtotal: R$ $total <br>
+                            <button class='finish-button' onclick='redirect()'>Finalizar compra</button>
+                        </div>";
                 } else {
                     echo "<h2>Você ainda não tem itens no carrinho </h2><br>"; 
                     echo "<a href='products.php'><button class='null-button'>Adicionar</button></a></div>";
                 }
-
-
                 ?>
         </div>
-
-        
-
     </div>
 </body>
 </html> 

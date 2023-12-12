@@ -26,58 +26,81 @@ body {
     justify-content: center;
     align-items: center;
 }
-  
+
 .navbar {
-    width: 100%;
+    background-color: #333;
     overflow: hidden;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    width: 100%;
 }
-  
-.navbar ul {
-    list-style-type: none;
+
+.nav-list {
+    list-style: none;
     margin: 0;
     padding: 0;
-}
-
-.navbar li {
-    float: left;
-}
-  
-.navbar li a {
-    display: block;
-    transition: all 0.35s ease;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-  
-.navbar li:not(.cart-icon) a:hover {
-    background-color: var(--blue-darker);
-}
-
-.navbar {
-    flex-direction: column;
-    width: 100%;
-    background-color: #333;
-    text-align: center;
-}
-
-.navbar.show {
     display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
-.navbar ul {
+.nav-list ul {
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+}
+
+.nav-list li {
+    margin: 0 15px;
+}
+
+.nav-list a {
+    text-decoration: none;
+    color: white;
+    font-size: 17px;
+    transition: color 0.3s ease;
+}
+
+.nav-list a:hover {
+    color: #ddd;
+}
+
+.menu-icon {
+    display: none;
     flex-direction: column;
+    cursor: pointer;
 }
 
-.navbar li {
-    margin: 10px 0;
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 2px 0;
+    position: relative;
+    left: 10px;
 }
 
-.menu-toggle {
-    display: block;
+@media screen and (max-width: 600px) {
+    .nav-list {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        background-color: #333;
+        height: 90px;
+    }
+
+    .nav-list.show {
+        display: flex;
+        width: 100vw;
+    }
+
+    .menu-icon {
+        display: flex;
+    }
 }
   
 .container {
@@ -195,22 +218,14 @@ body {
 }
 
 .cart-icon {
-    width: 40px;
-    height: 40px;
     position: relative;
     top: 3px;
-    background-color: var(--blue-main);
-    border-radius: 50%;
-    transition: all 0.3s ease;
 }
 
 .cart-icon img {
     position: absolute;
+    top: 17px;
     right: 13px;
-}
-
-.cart-icon:hover {
-    background-color: var(--blue-darker);
 }
 
 .cart-icon a {
@@ -223,8 +238,8 @@ body {
     border-radius: 50%;
     padding: 2px 5px;
     position: absolute;
-    top: 4px;
-    right: 0px;
+    top: -10px;
+    left: 15px;
     font-size: 12px;
 }
 
@@ -236,7 +251,6 @@ body {
     border-radius: 15px;
     display: grid;
 }
-
 
 .notification {
     display: flex;
@@ -272,9 +286,24 @@ body {
 }
 
 /* Adicionando uma media query para ajustar o layout em telas maiores */
-@media only screen and (min-width: 768px) {
+@media only screen and (max-width: 768px) {
     .grid-container {
-        grid-template-columns: repeat(3, 0.5fr);
+        grid-template-columns: repeat(1, 0.5fr);
+    }
+
+    .container#login {
+        width: 80%;
+        font-size: 34px;
+    }
+
+    .container#login form {
+        padding: 10px; /* Adiciona um espaçamento interno menor */
+    }
+
+    .container#login input,
+    .container#login button {
+        width: 100%; /* Faz com que os campos ocupem a largura total */
+        margin-bottom: 10px; /* Adiciona um espaçamento inferior entre os campos */
     }
 }
 
@@ -344,10 +373,6 @@ body {
     margin: 0 auto;
 }
 
-/* .grid-item .container {
-    min-height: 150px;
-} */
-
 .grid-item .container {
     min-height: 150px;
     max-width: 80%; /* Adição de uma largura máxima */
@@ -373,6 +398,13 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+@media screen and (max-width: 600px) {
+    .cart-container {
+        width: 90%; /* Faz com que a largura ocupe 100% da tela */
+        padding: 10px; /* Reduz o padding para melhor ajuste em telas menores */
+    }
+}
+
 .cart-item {
     border-bottom: 1px solid #ccc;
     padding: 10px;
@@ -390,9 +422,14 @@ body {
 .cart-items {
     margin-bottom: 20px;
     padding: 0px 15px;
+    max-height: 300px;
+    overflow-y: auto;
 }
 
 .cart-subtotal {
+    position: absolute;
+    top: 440px;
+    left: 58%;
     font-size: 18px;
     font-weight: bold;
     text-align: right;
@@ -485,6 +522,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow-x: hidden;
 }
 
 header {
